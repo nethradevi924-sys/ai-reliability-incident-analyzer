@@ -203,6 +203,28 @@ const App = () => {
     showToast('Sample logs loaded.');
   };
 
+  const handleFileUpload = (event) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    const supportedTypes = ['.log', '.txt', '.csv'];
+    const fileExtension = file.name.slice(file.name.lastIndexOf('.')).toLowerCase();
+    if (!supportedTypes.includes(fileExtension)) {
+      setError('Please upload a .log, .txt, or .csv file.');
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      setLogs(String(reader.result || ''));
+      setError('');
+      showToast(`${file.name} loaded.`);
+    };
+    reader.onerror = () => setError('Unable to read that file. Please try again.');
+    reader.readAsText(file);
+    event.target.value = '';
+  };
+
   const sections = useMemo(() => parseSections(analysis), [analysis]);
 
   const handleLogout = () => {
@@ -275,6 +297,7 @@ const App = () => {
                     onAnalyze={handleAnalyze}
                     onLoadSample={handleLoadSample}
                     onClear={handleClear}
+                    onFileUpload={handleFileUpload}
                     isLoading={isLoading}
                     charCount={charCount}
                     darkMode={darkMode}

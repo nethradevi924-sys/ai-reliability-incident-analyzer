@@ -39,7 +39,7 @@ const LoginPage = ({ onLogin, isAuthenticating, error }) => {
             <div className="mb-8">
               <p className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-600">Welcome back</p>
               <h2 className="mt-2 text-3xl font-bold">Sign in to your workspace</h2>
-              <p className="mt-2 text-sm text-slate-600">Use any valid email and a password of at least 6 characters to continue.</p>
+              <p className="mt-2 text-sm text-slate-600">Enter a valid email and a password of at least 6 characters to open the demo workspace.</p>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -74,7 +74,7 @@ const LoginPage = ({ onLogin, isAuthenticating, error }) => {
                   <input type="checkbox" className="rounded border-slate-300 text-blue-600" />
                   Keep me signed in
                 </label>
-                <a href="#" className="font-medium text-blue-600 hover:text-blue-700">Forgot password?</a>
+                <span className="font-medium text-slate-400">Demo access</span>
               </div>
 
               {error && <div className="rounded-2xl border border-rose-200 bg-rose-50 px-3 py-2 text-sm text-rose-700">{error}</div>}
@@ -89,8 +89,8 @@ const LoginPage = ({ onLogin, isAuthenticating, error }) => {
             </form>
 
             <div className="mt-6 rounded-2xl border border-dashed border-blue-200 bg-blue-50 p-4 text-sm text-slate-700">
-              <p className="font-semibold text-blue-700">Secure sign-in</p>
-              <p className="mt-1">Your profile and session details are stored locally for a seamless experience.</p>
+              <p className="font-semibold text-blue-700">Local demo workspace</p>
+              <p className="mt-1">This demo validates the form locally. Profile and session details are stored in your browser.</p>
             </div>
           </div>
         </div>
